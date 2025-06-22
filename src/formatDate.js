@@ -17,13 +17,11 @@ function formatDate(date, fromFormat, toFormat) {
         (toFormat[i].length === 4 && fromFormat.includes('YYYY')) ||
         (toFormat[i].length === 2 && fromFormat.includes('YY'))
       ) {
-        newArrayDate.push(replaceElement(i));
+        newArrayDate.push(oldArrayDate[fromFormat.indexOf(toFormat[i])]);
       }
 
       if (toFormat[i].length === 2 && fromFormat.includes('YYYY')) {
-        const replaseYear = oldArrayDate[fromFormat.indexOf('YYYY')].slice(-2);
-
-        newArrayDate.push(replaseYear);
+        newArrayDate.push(oldArrayDate[fromFormat.indexOf('YYYY')].slice(-2));
       }
 
       if (toFormat[i].length === 4 && fromFormat.includes('YY')) {
@@ -34,12 +32,8 @@ function formatDate(date, fromFormat, toFormat) {
         }
       }
     } else {
-      newArrayDate.push(replaceElement(i));
+      newArrayDate.push(oldArrayDate[fromFormat.indexOf(toFormat[i])]);
     }
-  }
-
-  function replaceElement(index) {
-    return oldArrayDate[fromFormat.indexOf(toFormat[index])];
   }
 
   return newArrayDate.join(toFormat.at(-1));
